@@ -4,15 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Global Utility Tools - Herramientas Web</title>
+  <!-- Aquí puedes insertar el script de Google AdSense cuando te aprueben la cuenta -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-TU_ID" crossorigin="anonymous"></script> -->
   <style>
     :root {
-      --primary-color: #0070ba; /* Azul PayPal / Financiero */
+      --primary-color: #0070ba;
       --secondary-color: #152b3c;
       --bg-color: #f4f7f6;
       --card-bg: #ffffff;
       --text-color: #333333;
     }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
@@ -23,7 +24,6 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
     header {
       background-color: var(--secondary-color);
       color: white;
@@ -31,17 +31,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
     .lang-switcher select {
       padding: 5px 10px;
       border-radius: 4px;
       border: none;
       font-weight: bold;
     }
-
-    .ad-banner-top {
+    .ad-container {
       background-color: #e2e8f0;
       border: 2px dashed #cbd5e1;
       color: #64748b;
@@ -51,9 +48,8 @@
       max-width: 728px;
       width: 90%;
       border-radius: 8px;
-      font-weight: bold;
+      font-size: 14px;
     }
-
     main {
       flex: 1;
       max-width: 800px;
@@ -64,22 +60,18 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-
     .tool-section {
       text-align: center;
     }
-
     .form-group {
       margin: 15px 0;
       text-align: left;
     }
-
     label {
       display: block;
       margin-bottom: 5px;
       font-weight: 600;
     }
-
     input, select, button {
       width: 100%;
       padding: 12px;
@@ -88,7 +80,6 @@
       box-sizing: border-box;
       font-size: 16px;
     }
-
     button {
       background-color: var(--primary-color);
       color: white;
@@ -98,11 +89,9 @@
       margin-top: 10px;
       transition: background 0.3s;
     }
-
     button:hover {
       background-color: #005ea6;
     }
-
     .result-box {
       margin-top: 20px;
       padding: 15px;
@@ -112,7 +101,24 @@
       font-size: 18px;
       font-weight: bold;
     }
-
+    .paypal-section {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    .paypal-btn {
+      display: inline-block;
+      background-color: #0070ba;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+    }
     footer {
       background-color: var(--secondary-color);
       color: white;
@@ -126,7 +132,7 @@
 <body>
 
   <header>
-    <h2 id="app-logo">GlobalTools</h2>
+    <h2>GlobalTools</h2>
     <div class="lang-switcher">
       <select id="langSelect" onchange="changeLanguage()">
         <option value="es">Español</option>
@@ -135,9 +141,15 @@
     </div>
   </header>
 
-  <!-- Espacio para Anuncio Superior (AdSense / Sponsor) -->
-  <div class="ad-banner-top" id="ad-top">
-    📢 Espacio Publicitario Reservado (728x90) - Google AdSense / Sponsor
+  <!-- Bloque de Anuncio Superior (AdSense Banner) -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-TU_ID"
+         data-ad-slot="TU_SLOT"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <span>Espacio para Anuncio Global (AdSense)</span>
   </div>
 
   <main>
@@ -165,12 +177,21 @@
       <div class="result-box" id="result">
         El resultado aparecerá aquí.
       </div>
+
+      <!-- Sección de Apoyo / Donación o Pago por PayPal -->
+      <div class="paypal-section">
+        <p>¿Te fue útil esta herramienta? Apoya el proyecto para mantenerlo gratuito:</p>
+        <!-- Reemplaza tu.correo@empresa.com con tu correo de PayPal Business -->
+        <a href="https://www.paypal.com/donate?hosted_button_id=TU_BUTTON_ID" target="_blank" class="paypal-btn">
+          Donar / Pagar con PayPal
+        </a>
+      </div>
     </div>
   </main>
 
-  <!-- Espacio para Anuncio Inferior -->
-  <div class="ad-banner-top" id="ad-bottom">
-    📢 Espacio Publicitario Reservado (728x90) - Pagos a PayPal
+  <!-- Bloque de Anuncio Inferior -->
+  <div class="ad-container">
+    <span>Espacio para Anuncio Inferior (AdSense / Patrocinador)</span>
   </div>
 
   <footer>
