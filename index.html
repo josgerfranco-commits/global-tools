@@ -6,13 +6,13 @@
   
   <!-- SEO & Metadatos Globales -->
   <title id="page-title">GlobalTools Hub - Herramientas Web Gratuitas</title>
-  <meta name="description" content="Plataforma global de utilidades web gratuitas: calculadora financiera, conversor de divisas, generador de contraseñas, contador de palabras y más.">
-  <meta name="keywords" content="herramientas web, conversor de divisas, interes compuesto, generador de contraseñas, contador de palabras, global tools">
+  <meta name="description" content="Plataforma global de utilidades web gratuitas: calculadora financiera, conversor de divisas, generador de contraseñas, contador de palabras, codificador base64 y generador de códigos QR.">
+  <meta name="keywords" content="herramientas web, conversor de divisas, interes compuesto, generador de contraseñas, contador de palabras, codificador base64, generador qr, global tools">
   <meta name="author" content="GlobalTools Hub">
   
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:title" content="GlobalTools Hub - Herramientas Web Gratuitas">
-  <meta property="og:description" content="Calculadoras, conversores y utilidades en línea de uso libre para todo el mundo.">
+  <meta property="og:description" content="Calculadoras, conversores, generadores QR y utilidades en línea de uso libre para todo el mundo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://global-tools-jf.vercel.app">
 
@@ -138,6 +138,13 @@
       font-size: 0.95rem;
       font-weight: bold;
       word-break: break-all;
+      text-align: center;
+    }
+    .qr-box img {
+      margin-top: 10px;
+      max-width: 180px;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
     }
     .paypal-section {
       text-align: center;
@@ -276,8 +283,8 @@
       <div class="result-box" id="result-words">Palabras: 0 | Caracteres: 0</div>
     </div>
 
-    <!-- Herramienta 5: Codificador Base64 (Full Width) -->
-    <div class="card tool-section full-width">
+    <!-- Herramienta 5: Codificador Base64 -->
+    <div class="card tool-section">
       <h2 id="tool5-title">Codificador Base64</h2>
       <p id="tool5-desc">Convierte texto plano a formato codificado Base64.</p>
 
@@ -289,6 +296,21 @@
       <button id="btn-b64" onclick="encodeBase64()">Codificar Base64</button>
 
       <div class="result-box" id="result-b64">Resultado Base64 aquí</div>
+    </div>
+
+    <!-- Herramienta 6: Generador de Códigos QR -->
+    <div class="card tool-section">
+      <h2 id="tool6-title">Generador de Código QR</h2>
+      <p id="tool6-desc">Genera un código QR instantáneo para cualquier enlace o texto.</p>
+
+      <div class="form-group">
+        <label id="label-qr" for="qrInput">Enlace o texto:</label>
+        <input type="text" id="qrInput" placeholder="Ej: https://google.com">
+      </div>
+
+      <button id="btn-qr" onclick="generateQR()">Generar Código QR</button>
+
+      <div class="result-box qr-box" id="result-qr">Tu código QR aparecerá aquí</div>
     </div>
 
     <!-- Sección de Apoyo / PayPal Destacada -->
@@ -341,6 +363,11 @@
         b64Label: "Texto a codificar:",
         btnB64: "Codificar Base64",
         resB64: "Resultado Base64 aquí:",
+        tool6Title: "Generador de Código QR",
+        tool6Desc: "Genera un código QR instantáneo para cualquier enlace o texto.",
+        qrLabel: "Enlace o texto:",
+        btnQr: "Generar Código QR",
+        resQr: "Tu código QR aparecerá aquí",
         paypalHeader: "Apoya este Proyecto",
         paypalDesc: "Mantén estas herramientas libres de publicidad realizando una contribución vía PayPal.",
         paypalBtn: "Pagar / Donar con PayPal"
@@ -374,6 +401,11 @@
         b64Label: "Text to encode:",
         btnB64: "Encode Base64",
         resB64: "Base64 result here:",
+        tool6Title: "QR Code Generator",
+        tool6Desc: "Generate an instant QR code for any link or text.",
+        qrLabel: "Link or text:",
+        btnQr: "Generate QR Code",
+        resQr: "Your QR code will appear here",
         paypalHeader: "Support this Project",
         paypalDesc: "Keep these tools ad-free by making a contribution via PayPal.",
         paypalBtn: "Pay / Donate with PayPal"
@@ -408,6 +440,11 @@
       document.getElementById('tool5-desc').innerText = translations[lang].tool5Desc;
       document.getElementById('label-b64').innerText = translations[lang].b64Label;
       document.getElementById('btn-b64').innerText = translations[lang].btnB64;
+
+      document.getElementById('tool6-title').innerText = translations[lang].tool6Title;
+      document.getElementById('tool6-desc').innerText = translations[lang].tool6Desc;
+      document.getElementById('label-qr').innerText = translations[lang].qrLabel;
+      document.getElementById('btn-qr').innerText = translations[lang].btnQr;
 
       document.getElementById('paypal-header').innerText = translations[lang].paypalHeader;
       document.getElementById('paypal-text').innerText = translations[lang].paypalDesc;
@@ -486,6 +523,19 @@
       } catch (e) {
         document.getElementById('result-b64').innerText = "Error al codificar el texto.";
       }
+    }
+
+    function generateQR() {
+      const input = document.getElementById('qrInput').value.trim();
+      const qrContainer = document.getElementById('result-qr');
+      
+      if (!input) {
+        qrContainer.innerText = "Por favor, ingresa un texto o enlace válido.";
+        return;
+      }
+
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(input)}`;
+      qrContainer.innerHTML = `<img src="${qrUrl}" alt="Código QR Generado">`;
     }
   </script>
 </body>
