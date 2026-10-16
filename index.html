@@ -23,7 +23,7 @@
   <meta property="og:url" content="https://global-tools-jf.vercel.app">
 
   <!-- Estilos CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -31,14 +31,16 @@
   <header>
     <div class="header-container">
       <h1 id="header-title">🛠️ GlobalTools Hub</h1>
-      <div class="lang-selector">
-        <label for="language-select" id="lang-label">🌐 Idioma / Language:</label>
-        <select id="language-select">
-          <option value="es" selected>Español</option>
-          <option value="en">English</option>
-          <option value="pt">Português</option>
-          <option value="fr">Français</option>
-        </select>
+      <div class="header-right">
+        <div class="lang-selector">
+          <label for="language-select" id="lang-label">🌐 Idioma / Language:</label>
+          <select id="language-select">
+            <option value="es" selected>Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+          </select>
+        </div>
       </div>
     </div>
   </header>
@@ -158,13 +160,24 @@
 
   </main>
 
+  <!-- Sección de Apoyo / Donaciones PayPal -->
+  <section class="paypal-section">
+    <div class="paypal-card">
+      <h3>☕ ¿Te gusta GlobalTools Hub?</h3>
+      <p>Apoya el mantenimiento y desarrollo de nuevas herramientas web gratuitas con una donación voluntaria.</p>
+      <a href="https://www.paypal.com" target="_blank" rel="noopener noreferrer" class="paypal-btn">
+        💳 Apoyar vía PayPal
+      </a>
+    </div>
+  </section>
+
   <!-- Pie de página -->
   <footer>
     <p>&copy; 2026 GlobalTools Hub. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts JavaScript Necesarios -->
+  <!-- Scripts JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
