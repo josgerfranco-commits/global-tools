@@ -82,13 +82,15 @@ function contarTexto() {
     document.getElementById('count-chars').innerText = caracteres;
 }
 
-// Lógica de Monetización / PayPal (Cambia 'tucuenta' por tu usuario real de paypal.me)
+// Lógica de Monetización / PayPal con tu enlace personalizado
 function donarPayPal() {
+    const paypalUrl = 'https://www.paypal.me/GlobalToolsHub';
+    
     const resultadoDiv = document.getElementById('resultado-paypal');
     resultadoDiv.style.display = 'block';
-    resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="https://www.paypal.me/tucuenta" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
+    resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="${paypalUrl}" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
     
     setTimeout(() => {
-        window.open('https://www.paypal.me/tucuenta', '_blank');
+        window.open(paypalUrl, '_blank');
     }, 1000);
 }
