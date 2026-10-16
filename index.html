@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">Global Utility Tools - Herramientas Web</title>
+  <title id="page-title">GlobalTools Hub - Herramientas Web</title>
   <style>
     :root {
       --primary-color: #0070ba;
@@ -25,10 +25,18 @@
     header {
       background-color: var(--secondary-color);
       color: white;
-      padding: 1rem 2rem;
+      padding: 0.8rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
     }
     .lang-switcher select {
       padding: 5px 10px;
@@ -41,45 +49,57 @@
       border: 2px dashed #cbd5e1;
       color: #64748b;
       text-align: center;
-      padding: 15px;
-      margin: 15px auto;
-      max-width: 728px;
+      padding: 10px;
+      margin: 10px auto;
+      max-width: 900px;
       width: 90%;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 6px;
+      font-size: 13px;
     }
     main {
       flex: 1;
-      max-width: 800px;
+      max-width: 900px;
       width: 90%;
-      margin: 20px auto;
+      margin: 15px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .full-width {
+      grid-column: span 2;
     }
     .card {
       background: var(--card-bg);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      margin-bottom: 25px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
     }
-    .tool-section {
-      text-align: center;
+    .tool-section h2 {
+      font-size: 1.2rem;
+      margin-top: 0;
+      color: var(--secondary-color);
+    }
+    .tool-section p {
+      font-size: 0.9rem;
+      color: #666;
     }
     .form-group {
-      margin: 15px 0;
+      margin: 10px 0;
       text-align: left;
     }
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       font-weight: 600;
+      font-size: 0.85rem;
     }
     input, select, button {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #cccccc;
       border-radius: 6px;
       box-sizing: border-box;
-      font-size: 16px;
+      font-size: 0.95rem;
     }
     button {
       background-color: var(--primary-color);
@@ -87,41 +107,41 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
       transition: background 0.3s;
     }
     button:hover {
       background-color: #005ea6;
     }
     .result-box {
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 12px;
+      padding: 10px;
       background-color: #eef6fc;
       border-left: 4px solid var(--primary-color);
       border-radius: 4px;
-      font-size: 18px;
+      font-size: 0.95rem;
       font-weight: bold;
       word-break: break-all;
     }
     .paypal-section {
       text-align: center;
-      padding: 25px;
+      padding: 20px;
       background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
       border: 2px solid #0070ba;
+      grid-column: span 2;
     }
     .paypal-btn {
       display: inline-block;
       background-color: #0070ba;
       color: white;
-      padding: 12px 25px;
+      padding: 10px 20px;
       border-radius: 25px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 15px;
-      font-size: 16px;
+      margin-top: 10px;
+      font-size: 0.95rem;
     }
     .paypal-btn:hover {
       background-color: #005ea6;
@@ -130,16 +150,24 @@
       background-color: var(--secondary-color);
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 0.8rem;
       margin-top: auto;
-      font-size: 14px;
+      font-size: 13px;
+    }
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .full-width, .paypal-section {
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h2>GlobalTools Hub</h2>
+    <div class="logo">GlobalTools Hub</div>
     <div class="lang-switcher">
       <select id="langSelect" onchange="changeLanguage()">
         <option value="es">Español</option>
@@ -156,8 +184,8 @@
   <main>
     <!-- Herramienta 1: Calculadora Financiera -->
     <div class="card tool-section">
-      <h1 id="tool1-title">Calculadora de Interés Compuesto Global</h1>
-      <p id="tool1-desc">Proyecta el crecimiento de tu capital a lo largo del tiempo de forma gratuita.</p>
+      <h2 id="tool1-title">Interés Compuesto</h2>
+      <p id="tool1-desc">Proyecta el crecimiento de tu capital fácilmente.</p>
 
       <div class="form-group">
         <label id="label-amount" for="amount">Monto Inicial ($ USD):</label>
@@ -165,26 +193,24 @@
       </div>
 
       <div class="form-group">
-        <label id="label-rate" for="rate">Tasa de Interés Anual (%):</label>
+        <label id="label-rate" for="rate">Tasa Anual (%):</label>
         <input type="number" id="rate" value="8">
       </div>
 
       <div class="form-group">
-        <label id="label-years" for="years">Años de Inversión:</label>
+        <label id="label-years" for="years">Años:</label>
         <input type="number" id="years" value="5">
       </div>
 
-      <button id="btn-calc" onclick="calculateCompound()">Calcular Proyección</button>
+      <button id="btn-calc" onclick="calculateCompound()">Calcular</button>
 
-      <div class="result-box" id="result-compound">
-        El resultado aparecerá aquí.
-      </div>
+      <div class="result-box" id="result-compound">Resultado aquí</div>
     </div>
 
     <!-- Herramienta 2: Conversor de Moneda Global -->
     <div class="card tool-section">
-      <h2 id="tool2-title">Conversor Rápido de Divisas</h2>
-      <p id="tool2-desc">Convierte montos entre las principales monedas internacionales.</p>
+      <h2 id="tool2-title">Conversor de Divisas</h2>
+      <p id="tool2-desc">Convierte entre principales monedas del mundo.</p>
 
       <div class="form-group">
         <label id="label-qty" for="quantity">Cantidad:</label>
@@ -192,43 +218,39 @@
       </div>
 
       <div class="form-group">
-        <label id="label-conversion" for="conversionType">Tipo de Conversión:</label>
+        <label id="label-conversion" for="conversionType">Conversión:</label>
         <select id="conversionType">
-          <option value="USD_EUR">USD a EUR (Dólar a Euro)</option>
-          <option value="USD_GTQ">USD a GTQ (Dólar a Quetzal)</option>
-          <option value="EUR_USD">EUR a USD (Euro a Dólar)</option>
-          <option value="GTQ_USD">GTQ a USD (Quetzal a Dólar)</option>
+          <option value="USD_EUR">USD a EUR</option>
+          <option value="USD_GTQ">USD a GTQ</option>
+          <option value="EUR_USD">EUR a USD</option>
+          <option value="GTQ_USD">GTQ a USD</option>
         </select>
       </div>
 
-      <button id="btn-convert" onclick="convertCurrency()">Convertir Moneda</button>
+      <button id="btn-convert" onclick="convertCurrency()">Convertir</button>
 
-      <div class="result-box" id="result-currency">
-        El resultado aparecerá aquí.
-      </div>
+      <div class="result-box" id="result-currency">Resultado aquí</div>
     </div>
 
     <!-- Herramienta 3: Generador de Contraseñas Seguras -->
-    <div class="card tool-section">
+    <div class="card tool-section full-width">
       <h2 id="tool3-title">Generador de Contraseñas Seguras</h2>
       <p id="tool3-desc">Crea contraseñas robustas para proteger tus cuentas digitales.</p>
 
       <div class="form-group">
-        <label id="label-length" for="pwdLength">Longitud de la contraseña (caracteres):</label>
+        <label id="label-length" for="pwdLength">Longitud (caracteres):</label>
         <input type="number" id="pwdLength" value="12" min="6" max="32">
       </div>
 
       <button id="btn-password" onclick="generatePassword()">Generar Contraseña</button>
 
-      <div class="result-box" id="result-password">
-        Tu contraseña aparecerá aquí.
-      </div>
+      <div class="result-box" id="result-password">Tu contraseña aparecerá aquí.</div>
     </div>
 
     <!-- Sección de Apoyo / PayPal Destacada -->
     <div class="paypal-section">
-      <h2 style="color: #0070ba; margin-top: 0;">Apoya este Proyecto</h2>
-      <p id="paypal-text">Mantén estas herramientas libres de publicidad invasiva realizando una contribución directa a través de PayPal.</p>
+      <h3 style="color: #0070ba; margin-top: 0;" id="paypal-header">Apoya este Proyecto</h3>
+      <p id="paypal-text" style="font-size: 0.9rem; color: #555;">Mantén estas herramientas libres de publicidad realizando una contribución vía PayPal.</p>
       <a href="https://www.paypal.com/ncp/payment/AQ2GHFL8GCUDL" target="_blank" class="paypal-btn" id="paypal-link">
         Pagar / Donar con PayPal
       </a>
@@ -247,47 +269,49 @@
   <script>
     const translations = {
       es: {
-        tool1Title: "Calculadora de Interés Compuesto Global",
-        tool1Desc: "Proyecta el crecimiento de tu capital a lo largo del tiempo de forma gratuita.",
+        tool1Title: "Interés Compuesto",
+        tool1Desc: "Proyecta el crecimiento de tu capital fácilmente.",
         amount: "Monto Inicial ($ USD):",
-        rate: "Tasa de Interés Anual (%):",
-        years: "Años de Inversión:",
-        btnCalc: "Calcular Proyección",
-        resCompound: "El valor final estimado será:",
-        tool2Title: "Conversor Rápido de Divisas",
-        tool2Desc: "Convierte montos entre las principales monedas internacionales.",
+        rate: "Tasa Anual (%):",
+        years: "Años:",
+        btnCalc: "Calcular",
+        resCompound: "Resultado aquí:",
+        tool2Title: "Conversor de Divisas",
+        tool2Desc: "Convierte entre principales monedas del mundo.",
         qty: "Cantidad:",
-        convType: "Tipo de Conversión:",
-        btnConvert: "Convertir Moneda",
-        resCurrency: "El resultado convertido es:",
+        convType: "Conversión:",
+        btnConvert: "Convertir",
+        resCurrency: "Resultado aquí:",
         tool3Title: "Generador de Contraseñas Seguras",
         tool3Desc: "Crea contraseñas robustas para proteger tus cuentas digitales.",
-        pwdLen: "Longitud de la contraseña (caracteres):",
+        pwdLen: "Longitud (caracteres):",
         btnPwd: "Generar Contraseña",
         resPwd: "Tu contraseña generada es:",
-        paypalDesc: "Mantén estas herramientas libres de publicidad invasiva realizando una contribución directa a través de PayPal.",
+        paypalHeader: "Apoya este Proyecto",
+        paypalDesc: "Mantén estas herramientas libres de publicidad realizando una contribución vía PayPal.",
         paypalBtn: "Pagar / Donar con PayPal"
       },
       en: {
-        tool1Title: "Global Compound Interest Calculator",
-        tool1Desc: "Project your capital growth over time for free.",
+        tool1Title: "Compound Interest",
+        tool1Desc: "Project your capital growth easily.",
         amount: "Initial Amount ($ USD):",
-        rate: "Annual Interest Rate (%):",
-        years: "Years of Investment:",
-        btnCalc: "Calculate Projection",
-        resCompound: "The estimated final value will be:",
-        tool2Title: "Quick Currency Converter",
-        tool2Desc: "Convert amounts between major international currencies.",
+        rate: "Annual Rate (%):",
+        years: "Years:",
+        btnCalc: "Calculate",
+        resCompound: "Result here:",
+        tool2Title: "Currency Converter",
+        tool2Desc: "Convert between major world currencies.",
         qty: "Amount:",
-        convType: "Conversion Type:",
-        btnConvert: "Convert Currency",
-        resCurrency: "The converted result is:",
+        convType: "Conversion:",
+        btnConvert: "Convert",
+        resCurrency: "Result here:",
         tool3Title: "Secure Password Generator",
         tool3Desc: "Create robust passwords to protect your digital accounts.",
         pwdLen: "Password length (characters):",
         btnPwd: "Generate Password",
         resPwd: "Your generated password is:",
-        paypalDesc: "Keep these tools free from intrusive ads by making a direct contribution via PayPal.",
+        paypalHeader: "Support this Project",
+        paypalDesc: "Keep these tools ad-free by making a contribution via PayPal.",
         paypalBtn: "Pay / Donate with PayPal"
       }
     };
@@ -312,6 +336,7 @@
       document.getElementById('label-length').innerText = translations[lang].pwdLen;
       document.getElementById('btn-password').innerText = translations[lang].btnPwd;
 
+      document.getElementById('paypal-header').innerText = translations[lang].paypalHeader;
       document.getElementById('paypal-text').innerText = translations[lang].paypalDesc;
       document.getElementById('paypal-link').innerText = translations[lang].paypalBtn;
     }
@@ -323,7 +348,7 @@
       const lang = document.getElementById('langSelect').value;
 
       if (isNaN(P) || isNaN(r) || isNaN(t)) {
-        document.getElementById('result-compound').innerText = "Por favor ingrese datos válidos.";
+        document.getElementById('result-compound').innerText = "Datos inválidos.";
         return;
       }
 
@@ -333,11 +358,11 @@
 
     function convertCurrency() {
       const qty = parseFloat(document.getElementById('quantity').value);
-      const type = document.getElementById('conversionType').value;
+      const type = document.getElementById('conversionType.value') || document.getElementById('conversionType').value;
       const lang = document.getElementById('langSelect').value;
 
       if (isNaN(qty)) {
-        document.getElementById('result-currency').innerText = "Por favor ingrese una cantidad válida.";
+        document.getElementById('result-currency').innerText = "Cantidad inválida.";
         return;
       }
 
