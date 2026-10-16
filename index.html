@@ -21,3 +21,150 @@
   <meta property="og:description" content="Calculadoras, conversores, generadores QR y utilidades en línea de uso libre para todo el mundo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://global-tools-jf.vercel.app">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado & Navegación -->
+  <header>
+    <div class="header-container">
+      <h1 id="header-title">🛠️ GlobalTools Hub</h1>
+      <div class="lang-selector">
+        <label for="language-select" id="lang-label">🌐 Idioma / Language:</label>
+        <select id="language-select">
+          <option value="es" selected>Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegación por pestañas -->
+  <nav class="tool-nav">
+    <button class="nav-btn active" data-tool="compound-interest" id="nav-interest">💰 Interés Compuesto</button>
+    <button class="nav-btn" data-tool="currency" id="nav-currency">🔀 Conversor Divisas</button>
+    <button class="nav-btn" data-tool="password" id="nav-password">🔑 Generador Contraseñas</button>
+    <button class="nav-btn" data-tool="word-counter" id="nav-words">📝 Contador Palabras</button>
+    <button class="nav-btn" data-tool="base64" id="nav-base64">⚡ Base64 Encoder</button>
+    <button class="nav-btn" data-tool="qr" id="nav-qr">📱 Generador QR</button>
+  </nav>
+
+  <!-- Contenedor Principal de Herramientas -->
+  <main class="main-content">
+
+    <!-- 1. Interés Compuesto -->
+    <section id="compound-interest" class="tool-card active">
+      <h2 id="title-interest">Calculadora de Interés Compuesto</h2>
+      <div class="form-group">
+        <label id="lbl-principal">Capital Inicial ($):</label>
+        <input type="number" id="ci-principal" value="1000">
+      </div>
+      <div class="form-group">
+        <label id="lbl-rate">Tasa de Interés Anual (%):</label>
+        <input type="number" id="ci-rate" value="5" step="0.1">
+      </div>
+      <div class="form-group">
+        <label id="lbl-years">Tiempo (Años):</label>
+        <input type="number" id="ci-years" value="10">
+      </div>
+      <button class="btn-primary" id="btn-calc-interest">Calcular</button>
+      <div class="result-box" id="ci-result"></div>
+    </section>
+
+    <!-- 2. Conversor de Divisas -->
+    <section id="currency" class="tool-card">
+      <h2 id="title-currency">Conversor de Divisas</h2>
+      <div class="form-group">
+        <label id="lbl-amount">Monto:</label>
+        <input type="number" id="cur-amount" value="100">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label id="lbl-from">De:</label>
+          <select id="cur-from">
+            <option value="USD">USD - Dólar EE.UU.</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - Libra Esterlina</option>
+            <option value="MXN">MXN - Peso Mexicano</option>
+            <option value="GTQ">GTQ - Quetzal Guatemalteco</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label id="lbl-to">A:</label>
+          <select id="cur-to">
+            <option value="EUR">EUR - Euro</option>
+            <option value="USD">USD - Dólar EE.UU.</option>
+            <option value="GBP">GBP - Libra Esterlina</option>
+            <option value="MXN">MXN - Peso Mexicano</option>
+            <option value="GTQ">GTQ - Quetzal Guatemalteco</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" id="btn-convert-cur">Convertir</button>
+      <div class="result-box" id="cur-result"></div>
+    </section>
+
+    <!-- 3. Generador de Contraseñas -->
+    <section id="password" class="tool-card">
+      <h2 id="title-password">Generador de Contraseñas Seguras</h2>
+      <div class="form-group">
+        <label id="lbl-pwd-length">Longitud de la contraseña:</label>
+        <input type="range" id="pwd-length" min="6" max="32" value="16">
+        <span id="pwd-length-val">16</span>
+      </div>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="pwd-nums" checked> <span id="lbl-nums">Incluir Números</span></label>
+        <label><input type="checkbox" id="pwd-syms" checked> <span id="lbl-syms">Incluir Símbolos</span></label>
+      </div>
+      <button class="btn-primary" id="btn-gen-pwd">Generar Contraseña</button>
+      <div class="result-box" id="pwd-result"></div>
+    </section>
+
+    <!-- 4. Contador de Palabras -->
+    <section id="word-counter" class="tool-card">
+      <h2 id="title-words">Contador de Palabras y Caracteres</h2>
+      <textarea id="word-input" placeholder="Escribe o pega tu texto aquí..."></textarea>
+      <div class="stats-row">
+        <div><strong id="lbl-count-words">Palabras:</strong> <span id="stat-words">0</span></div>
+        <div><strong id="lbl-count-chars">Caracteres:</strong> <span id="stat-chars">0</span></div>
+      </div>
+    </section>
+
+    <!-- 5. Codificador / Decodificador Base64 -->
+    <section id="base64" class="tool-card">
+      <h2 id="title-base64">Codificador / Decodificador Base64</h2>
+      <textarea id="b64-input" placeholder="Texto a procesar..."></textarea>
+      <div class="btn-row">
+        <button class="btn-primary" id="btn-b64-encode">Codificar</button>
+        <button class="btn-secondary" id="btn-b64-decode">Decodificar</button>
+      </div>
+      <div class="result-box" id="b64-result"></div>
+    </section>
+
+    <!-- 6. Generador de Código QR -->
+    <section id="qr" class="tool-card">
+      <h2 id="title-qr">Generador de Código QR</h2>
+      <div class="form-group">
+        <label id="lbl-qr-text">Texto o Enlace (URL):</label>
+        <input type="text" id="qr-input" placeholder="https://ejemplo.com">
+      </div>
+      <button class="btn-primary" id="btn-gen-qr">Generar QR</button>
+      <div class="qr-container" id="qr-result"></div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2026 GlobalTools Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
