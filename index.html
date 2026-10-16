@@ -101,6 +101,7 @@
       border-radius: 4px;
       font-size: 18px;
       font-weight: bold;
+      word-break: break-all;
     }
     .paypal-section {
       text-align: center;
@@ -207,11 +208,28 @@
       </div>
     </div>
 
+    <!-- Herramienta 3: Generador de Contraseñas Seguras -->
+    <div class="card tool-section">
+      <h2 id="tool3-title">Generador de Contraseñas Seguras</h2>
+      <p id="tool3-desc">Crea contraseñas robustas para proteger tus cuentas digitales.</p>
+
+      <div class="form-group">
+        <label id="label-length" for="pwdLength">Longitud de la contraseña (caracteres):</label>
+        <input type="number" id="pwdLength" value="12" min="6" max="32">
+      </div>
+
+      <button id="btn-password" onclick="generatePassword()">Generar Contraseña</button>
+
+      <div class="result-box" id="result-password">
+        Tu contraseña aparecerá aquí.
+      </div>
+    </div>
+
     <!-- Sección de Apoyo / PayPal Destacada -->
     <div class="paypal-section">
       <h2 style="color: #0070ba; margin-top: 0;">Apoya este Proyecto</h2>
       <p id="paypal-text">Mantén estas herramientas libres de publicidad invasiva realizando una contribución directa a través de PayPal.</p>
-      <a href="https://www.paypal.com" target="_blank" class="paypal-btn" id="paypal-link">
+      <a href="https://www.paypal.com/ncp/payment/AQ2GHFL8GCUDL" target="_blank" class="paypal-btn" id="paypal-link">
         Pagar / Donar con PayPal
       </a>
     </div>
@@ -242,6 +260,11 @@
         convType: "Tipo de Conversión:",
         btnConvert: "Convertir Moneda",
         resCurrency: "El resultado convertido es:",
+        tool3Title: "Generador de Contraseñas Seguras",
+        tool3Desc: "Crea contraseñas robustas para proteger tus cuentas digitales.",
+        pwdLen: "Longitud de la contraseña (caracteres):",
+        btnPwd: "Generar Contraseña",
+        resPwd: "Tu contraseña generada es:",
         paypalDesc: "Mantén estas herramientas libres de publicidad invasiva realizando una contribución directa a través de PayPal.",
         paypalBtn: "Pagar / Donar con PayPal"
       },
@@ -259,6 +282,11 @@
         convType: "Conversion Type:",
         btnConvert: "Convert Currency",
         resCurrency: "The converted result is:",
+        tool3Title: "Secure Password Generator",
+        tool3Desc: "Create robust passwords to protect your digital accounts.",
+        pwdLen: "Password length (characters):",
+        btnPwd: "Generate Password",
+        resPwd: "Your generated password is:",
         paypalDesc: "Keep these tools free from intrusive ads by making a direct contribution via PayPal.",
         paypalBtn: "Pay / Donate with PayPal"
       }
@@ -278,6 +306,11 @@
       document.getElementById('label-qty').innerText = translations[lang].qty;
       document.getElementById('label-conversion').innerText = translations[lang].convType;
       document.getElementById('btn-convert').innerText = translations[lang].btnConvert;
+
+      document.getElementById('tool3-title').innerText = translations[lang].tool3Title;
+      document.getElementById('tool3-desc').innerText = translations[lang].tool3Desc;
+      document.getElementById('label-length').innerText = translations[lang].pwdLen;
+      document.getElementById('btn-password').innerText = translations[lang].btnPwd;
 
       document.getElementById('paypal-text').innerText = translations[lang].paypalDesc;
       document.getElementById('paypal-link').innerText = translations[lang].paypalBtn;
@@ -318,6 +351,19 @@
       const result = qty * rates[type];
       const targetCurrency = type.split('_')[1];
       document.getElementById('result-currency').innerText = `${translations[lang].resCurrency} ${result.toFixed(2)} ${targetCurrency}`;
+    }
+
+    function generatePassword() {
+      const length = parseInt(document.getElementById('pwdLength').value) || 12;
+      const lang = document.getElementById('langSelect').value;
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
+      let password = "";
+      
+      for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      document.getElementById('result-password').innerText = `${translations[lang].resPwd} ${password}`;
     }
   </script>
 </body>
