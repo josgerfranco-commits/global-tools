@@ -82,13 +82,13 @@ function contarTexto() {
     document.getElementById('count-chars').innerText = caracteres;
 }
 
-// Lógica de Monetización / PayPal
+// Lógica de Monetización / PayPal (Cambia 'tucuenta' por tu usuario real de paypal.me)
 function donarPayPal() {
     const resultadoDiv = document.getElementById('resultado-paypal');
     resultadoDiv.style.display = 'block';
-    resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="https://www.paypal.com" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
+    resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="https://www.paypal.me/tucuenta" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
     
     setTimeout(() => {
-        window.open('https://www.paypal.com', '_blank');
+        window.open('https://www.paypal.me/tucuenta', '_blank');
     }, 1000);
 }
