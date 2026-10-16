@@ -88,7 +88,6 @@ function donarPayPal() {
     resultadoDiv.style.display = 'block';
     resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="https://www.paypal.com" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
     
-    // Simulación de redirección o apertura de enlace de pago
     setTimeout(() => {
         window.open('https://www.paypal.com', '_blank');
     }, 1000);
