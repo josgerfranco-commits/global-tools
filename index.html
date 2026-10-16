@@ -93,13 +93,17 @@
       font-weight: 600;
       font-size: 0.85rem;
     }
-    input, select, button {
+    input, select, textarea, button {
       width: 100%;
       padding: 10px;
       border: 1px solid #cccccc;
       border-radius: 6px;
       box-sizing: border-box;
       font-size: 0.95rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
     }
     button {
       background-color: var(--primary-color);
@@ -233,9 +237,9 @@
     </div>
 
     <!-- Herramienta 3: Generador de Contraseñas Seguras -->
-    <div class="card tool-section full-width">
-      <h2 id="tool3-title">Generador de Contraseñas Seguras</h2>
-      <p id="tool3-desc">Crea contraseñas robustas para proteger tus cuentas digitales.</p>
+    <div class="card tool-section">
+      <h2 id="tool3-title">Generador de Contraseñas</h2>
+      <p id="tool3-desc">Crea contraseñas robustas para tus cuentas.</p>
 
       <div class="form-group">
         <label id="label-length" for="pwdLength">Longitud (caracteres):</label>
@@ -244,7 +248,35 @@
 
       <button id="btn-password" onclick="generatePassword()">Generar Contraseña</button>
 
-      <div class="result-box" id="result-password">Tu contraseña aparecerá aquí.</div>
+      <div class="result-box" id="result-password">Tu contraseña aquí</div>
+    </div>
+
+    <!-- Herramienta 4: Contador de Palabras -->
+    <div class="card tool-section">
+      <h2 id="tool4-title">Contador de Palabras</h2>
+      <p id="tool4-desc">Cuenta palabras y caracteres en tiempo real.</p>
+
+      <div class="form-group">
+        <label id="label-text" for="textInput">Escribe tu texto:</label>
+        <textarea id="textInput" placeholder="Escribe aquí..." oninput="countWords()"></textarea>
+      </div>
+
+      <div class="result-box" id="result-words">Palabras: 0 | Caracteres: 0</div>
+    </div>
+
+    <!-- Herramienta 5: Codificador Base64 (Full Width) -->
+    <div class="card tool-section full-width">
+      <h2 id="tool5-title">Codificador Base64</h2>
+      <p id="tool5-desc">Convierte texto plano a formato codificado Base64.</p>
+
+      <div class="form-group">
+        <label id="label-b64" for="b64Input">Texto a codificar:</label>
+        <input type="text" id="b64Input" placeholder="Ej: Hola Mundo">
+      </div>
+
+      <button id="btn-b64" onclick="encodeBase64()">Codificar Base64</button>
+
+      <div class="result-box" id="result-b64">Resultado Base64 aquí</div>
     </div>
 
     <!-- Sección de Apoyo / PayPal Destacada -->
@@ -282,11 +314,21 @@
         convType: "Conversión:",
         btnConvert: "Convertir",
         resCurrency: "Resultado aquí:",
-        tool3Title: "Generador de Contraseñas Seguras",
-        tool3Desc: "Crea contraseñas robustas para proteger tus cuentas digitales.",
+        tool3Title: "Generador de Contraseñas",
+        tool3Desc: "Crea contraseñas robustas para tus cuentas.",
         pwdLen: "Longitud (caracteres):",
         btnPwd: "Generar Contraseña",
-        resPwd: "Tu contraseña generada es:",
+        resPwd: "Tu contraseña aquí:",
+        tool4Title: "Contador de Palabras",
+        tool4Desc: "Cuenta palabras y caracteres en tiempo real.",
+        textLabel: "Escribe tu texto:",
+        resWords: "Palabras:",
+        resChars: "Caracteres:",
+        tool5Title: "Codificador Base64",
+        tool5Desc: "Convierte texto plano a formato codificado Base64.",
+        b64Label: "Texto a codificar:",
+        btnB64: "Codificar Base64",
+        resB64: "Resultado Base64 aquí:",
         paypalHeader: "Apoya este Proyecto",
         paypalDesc: "Mantén estas herramientas libres de publicidad realizando una contribución vía PayPal.",
         paypalBtn: "Pagar / Donar con PayPal"
@@ -305,11 +347,21 @@
         convType: "Conversion:",
         btnConvert: "Convert",
         resCurrency: "Result here:",
-        tool3Title: "Secure Password Generator",
-        tool3Desc: "Create robust passwords to protect your digital accounts.",
+        tool3Title: "Password Generator",
+        tool3Desc: "Create robust passwords for your accounts.",
         pwdLen: "Password length (characters):",
         btnPwd: "Generate Password",
-        resPwd: "Your generated password is:",
+        resPwd: "Your password here:",
+        tool4Title: "Word Counter",
+        tool4Desc: "Count words and characters in real time.",
+        textLabel: "Type your text:",
+        resWords: "Words:",
+        resChars: "Characters:",
+        tool5Title: "Base64 Encoder",
+        tool5Desc: "Convert plain text to Base64 encoded format.",
+        b64Label: "Text to encode:",
+        btnB64: "Encode Base64",
+        resB64: "Base64 result here:",
         paypalHeader: "Support this Project",
         paypalDesc: "Keep these tools ad-free by making a contribution via PayPal.",
         paypalBtn: "Pay / Donate with PayPal"
@@ -336,6 +388,15 @@
       document.getElementById('label-length').innerText = translations[lang].pwdLen;
       document.getElementById('btn-password').innerText = translations[lang].btnPwd;
 
+      document.getElementById('tool4-title').innerText = translations[lang].tool4Title;
+      document.getElementById('tool4-desc').innerText = translations[lang].tool4Desc;
+      document.getElementById('label-text').innerText = translations[lang].textLabel;
+
+      document.getElementById('tool5-title').innerText = translations[lang].tool5Title;
+      document.getElementById('tool5-desc').innerText = translations[lang].tool5Desc;
+      document.getElementById('label-b64').innerText = translations[lang].b64Label;
+      document.getElementById('btn-b64').innerText = translations[lang].btnB64;
+
       document.getElementById('paypal-header').innerText = translations[lang].paypalHeader;
       document.getElementById('paypal-text').innerText = translations[lang].paypalDesc;
       document.getElementById('paypal-link').innerText = translations[lang].paypalBtn;
@@ -358,7 +419,7 @@
 
     function convertCurrency() {
       const qty = parseFloat(document.getElementById('quantity').value);
-      const type = document.getElementById('conversionType.value') || document.getElementById('conversionType').value;
+      const type = document.getElementById('conversionType').value;
       const lang = document.getElementById('langSelect').value;
 
       if (isNaN(qty)) {
@@ -389,6 +450,30 @@
       }
 
       document.getElementById('result-password').innerText = `${translations[lang].resPwd} ${password}`;
+    }
+
+    function countWords() {
+      const text = document.getElementById('textInput').value.trim();
+      const lang = document.getElementById('langSelect').value;
+      const words = text === "" ? 0 : text.split(/\s+/).length;
+      const chars = text.length;
+      
+      const wLabel = lang === 'es' ? 'Palabras' : 'Words';
+      const cLabel = lang === 'es' ? 'Caracteres' : 'Characters';
+      
+      document.getElementById('result-words').innerText = `${wLabel}: ${words} | ${cLabel}: ${chars}`;
+    }
+
+    function encodeBase64() {
+      const text = document.getElementById('b64Input').value;
+      const lang = document.getElementById('langSelect').value;
+      
+      try {
+        const encoded = btoa(unescape(encodeURIComponent(text)));
+        document.getElementById('result-b64').innerText = `${translations[lang].resB64} ${encoded}`;
+      } catch (e) {
+        document.getElementById('result-b64').innerText = "Error al codificar el texto.";
+      }
     }
   </script>
 </body>
