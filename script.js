@@ -1,21 +1,23 @@
-// Función para cambiar de pestaña/herramienta
+// Función para cambiar de pestaña/herramienta de forma interactiva
 function switchTool(toolId) {
     // 1. Ocultar todas las tarjetas de herramientas
     const cards = document.querySelectorAll('.tool-card');
     cards.forEach(card => card.classList.remove('active'));
 
-    // 2. Desactivar todos los botones de navegación
+    // 2. Desactivar todos los botones de la barra de navegación
     const buttons = document.querySelectorAll('.nav-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // 3. Mostrar la tarjeta seleccionada
+    // 3. Mostrar la tarjeta de la herramienta seleccionada
     const activeCard = document.getElementById(toolId);
     if (activeCard) {
         activeCard.classList.add('active');
     }
 
-    // 4. Activar el botón que disparó el evento
-    event.currentTarget.classList.add('active');
+    // 4. Activar visualmente el botón sobre el que se hizo clic
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
 }
 
 // Lógica de Interés Compuesto
@@ -31,20 +33,18 @@ function calcularInteres() {
     resultadoDiv.innerHTML = `Monto Final: <strong>$${montoFinal.toFixed(2)}</strong> | Ganancia Neta: <strong>$${ganancia.toFixed(2)}</strong>`;
 }
 
-// Lógica de Conversor de Divisas (Tasas de ejemplo)
+// Lógica de Conversor de Divisas
 function convertirDivisa() {
     const monto = parseFloat(document.getElementById('monto').value) || 0;
     const de = document.getElementById('moneda-de').value;
     const a = document.getElementById('moneda-a').value;
 
-    // Tasas base aproximadas con respecto al USD
     const tasas = {
         USD: 1.0,
         EUR: 0.92,
         GTQ: 7.85
     };
 
-    // Convertir a USD primero, luego a la moneda destino
     const enUSD = monto / tasas[de];
     const resultado = enUSD * tasas[a];
 
@@ -80,4 +80,16 @@ function contarTexto() {
 
     document.getElementById('count-words').innerText = palabras;
     document.getElementById('count-chars').innerText = caracteres;
+}
+
+// Lógica de Monetización / PayPal
+function donarPayPal() {
+    const resultadoDiv = document.getElementById('resultado-paypal');
+    resultadoDiv.style.display = 'block';
+    resultadoDiv.innerHTML = `Redirigiendo a PayPal para completar tu donación... <br><a href="https://www.paypal.com" target="_blank" style="color: #0070ba; font-weight: bold;">Haz clic aquí si no se abre automáticamente</a>`;
+    
+    // Simulación de redirección o apertura de enlace de pago
+    setTimeout(() => {
+        window.open('https://www.paypal.com', '_blank');
+    }, 1000);
 }

@@ -12,12 +12,13 @@
         <h1>🛠️ GlobalTools Hub</h1>
     </header>
 
-    <!-- Barra de navegación / Pestañas -->
+    <!-- Barra de navegación / Pestañas (Incluyendo la opción de Monetización / PayPal) -->
     <nav class="nav-bar">
         <button class="nav-btn active" onclick="switchTool('interes')">💰 Interés Compuesto</button>
         <button class="nav-btn" onclick="switchTool('divisas')">🔀 Conversor Divisas</button>
         <button class="nav-btn" onclick="switchTool('passwords')">🔑 Generador Contraseñas</button>
         <button class="nav-btn" onclick="switchTool('contador')">📝 Contador Palabras</button>
+        <button class="nav-btn" onclick="switchTool('monetizacion')">💎 Monetización (PayPal)</button>
     </nav>
 
     <!-- Contenido Principal -->
@@ -94,6 +95,16 @@
                 <p>Palabras: <span id="count-words">0</span></p>
                 <p>Caracteres: <span id="count-chars">0</span></p>
             </div>
+        </section>
+
+        <!-- Herramienta 5: Monetización y Donaciones (PayPal) -->
+        <section id="monetizacion" class="tool-card">
+            <h2>Apoya este Proyecto</h2>
+            <p>Si GlobalTools Hub te ha sido útil, considera hacer una donación mediante PayPal para mantener las herramientas activas y gratuitas.</p>
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <button class="action-btn" style="background-color: #0070ba;" onclick="donarPayPal()">Donar con PayPal</button>
+            </div>
+            <div id="resultado-paypal" class="result-box" style="display:none;"></div>
         </section>
 
     </main>
