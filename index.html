@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTools Hub</title>
+    <title>GlobalTools Hub - Calculadoras y Herramientas Web Gratuitas</title>
     
     <!-- Script de Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7941587808378743"
@@ -24,6 +24,7 @@
         <button class="nav-btn" onclick="switchTool('passwords')">🔑 Generador Contraseñas</button>
         <button class="nav-btn" onclick="switchTool('contador')">📝 Contador Palabras</button>
         <button class="nav-btn" onclick="switchTool('monetizacion')">💎 Monetización (PayPal)</button>
+        <button class="nav-btn" onclick="switchTool('privacidad')">🔒 Privacidad</button>
     </nav>
 
     <!-- Contenido Principal -->
@@ -46,6 +47,12 @@
             </div>
             <button class="action-btn" onclick="calcularInteres()">Calcular</button>
             <div id="resultado-interes" class="result-box"></div>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #e2e8f0;">
+            <article>
+                <h3>¿Qué es el Interés Compuesto y cómo funciona?</h3>
+                <p>El interés compuesto es el interés que se calcula sobre el capital inicial y también sobre los intereses acumulados de períodos anteriores. A diferencia del interés simple, el interés compuesto hace que tu dinero crezca a un ritmo acelerado a lo largo del tiempo.</p>
+            </article>
         </section>
 
         <!-- Herramienta 2: Conversor de Divisas -->
@@ -73,6 +80,12 @@
             </div>
             <button class="action-btn" onclick="convertirDivisa()">Convertir</button>
             <div id="resultado-divisa" class="result-box"></div>
+
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #e2e8f0;">
+            <article>
+                <h3>Conversiones Financieras en Tiempo Real</h3>
+                <p>Nuestra herramienta te permite realizar conversiones de tipo de cambio estándar entre dólares estadounidenses (USD), euros (EUR) y quetzales guatemaltecos (GTQ) de forma rápida y sencilla.</p>
+            </article>
         </section>
 
         <!-- Herramienta 3: Generador de Contraseñas -->
@@ -112,10 +125,18 @@
             <div id="resultado-paypal" class="result-box" style="display:none;"></div>
         </section>
 
+        <!-- Pestaña 6: Política de Privacidad -->
+        <section id="privacidad" class="tool-card">
+            <h2>Política de Privacidad</h2>
+            <p>En GlobalTools Hub, la privacidad de nuestros visitantes es de suma importancia. Esta política describe los tipos de información personal que recibe y recopila el sitio y cómo se utiliza.</p>
+            <h3>Cookies y Anuncios de Google AdSense</h3>
+            <p>Google, como proveedor de terceros, utiliza cookies para publicar anuncios en este sitio. El uso de cookies de publicidad permite a Google y a sus socios mostrar anuncios basados en las visitas realizadas a este y a otros sitios de Internet.</p>
+        </section>
+
     </main>
 
     <footer style="text-align: center; margin-top: 3rem; padding: 1rem; color: #64748b; font-size: 0.9rem;">
-        &copy; 2026 GlobalTools Hub. All rights reserved.
+        &copy; 2026 GlobalTools Hub. Todos los derechos reservados. | <a href="#" onclick="switchTool('privacidad')" style="color: #2563eb;">Política de Privacidad</a>
     </footer>
 
     <script src="script.js"></script>
